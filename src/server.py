@@ -1,6 +1,7 @@
 from flask import Flask
 from calendar_module import get_all_events, get_date_strings
 from datetime import datetime
+from cbor2 import dumps
 
 calendar_days = 2
 
@@ -31,4 +32,4 @@ def endpoint():
         "cal": calendar_payload
     }
 
-    return payload
+    return dumps(payload)
