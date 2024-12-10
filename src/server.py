@@ -7,7 +7,7 @@ calendar_days = 2
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
+def endpoint():
     now = datetime.now()
     events = get_all_events(now, calendar_days)
 
@@ -27,4 +27,8 @@ def hello_world():
         "ev": event_payload
     }
 
-    return calendar_payload
+    payload = {
+        "cal": calendar_payload
+    }
+
+    return payload
