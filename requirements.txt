@@ -11,11 +11,9 @@ itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==3.0.2
 python-dateutil==2.9.0.post0
-python-dotenv==1.0.1
 requests==2.32.3
 six==1.17.0
-TatSu==5.12.2
-todoist_api_python==2.1.7
+TatSu==5.8.3
 types-python-dateutil==2.9.0.20241206
 urllib3==2.2.3
 Werkzeug==3.1.3
