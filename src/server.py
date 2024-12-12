@@ -1,5 +1,6 @@
 from flask import Flask
 from calendar_module import get_all_events, get_date_strings
+from todoist_module import get_todo_items
 from datetime import datetime
 from cbor2 import dumps
 import calendar_settings
@@ -15,7 +16,7 @@ def endpoint():
     ### HEADER
     header_payload = {
         "d": now.strftime("%d"), # day
-        "w": now.strftime("%A"), # weekday
+        "w": now.strftime("%A"), # day of week
         "s": now.strftime("%B %Y") # subtitle (month, year)
     }
 
@@ -38,9 +39,20 @@ def endpoint():
         "ev": event_payload
     }
 
+    ### TODOLIST
+    tasks = get_todo_items(now)
+
+    tasks_payload = []
+    for task in tasks:
+        tasks_payload.append({
+            "txt": task.text,
+            "sub": task.subtext
+        })
+
     payload = {
         "hd": header_payload,
-        "cal": calendar_payload
+        "cal": calendar_payload,
+        "tsk": tasks_payload
     }
 
     return dumps(payload)
