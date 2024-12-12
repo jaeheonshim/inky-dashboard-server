@@ -18,6 +18,8 @@ def get_subtext(current: datetime, task: Task):
         dt = datetime.strptime(task.due.date, "%Y-%m-%d")
         month_day = dt.strftime("%b %d")
 
+    dt = dt.replace(tzinfo=current.tzinfo) # Use current timezone
+
     day_of_week = dt.strftime("%A")
 
     if current > dt:
