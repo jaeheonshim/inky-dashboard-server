@@ -15,6 +15,7 @@ python-dateutil==2.9.0.post0
 requests==2.32.3
 six==1.17.0
 TatSu==5.8.3
+todoist_api_python==2.1.7
 types-python-dateutil==2.9.0.20241206
 urllib3==2.2.3
 Werkzeug==3.1.3
