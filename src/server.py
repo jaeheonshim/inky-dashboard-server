@@ -11,6 +11,15 @@ app = Flask(__name__)
 @app.route("/")
 def endpoint():
     now = datetime.now(calendar_settings.timezone)
+
+    ### HEADER
+    header_payload = {
+        "d": now.strftime("%d"), # day
+        "w": now.strftime("%A"), # weekday
+        "s": now.strftime("%B %Y") # subtitle (month, year)
+    }
+
+    ### CALENDAR
     events = get_all_events(now, calendar_days)
 
     event_payload = []
@@ -30,6 +39,7 @@ def endpoint():
     }
 
     payload = {
+        "hd": header_payload,
         "cal": calendar_payload
     }
 
