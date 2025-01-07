@@ -12,7 +12,7 @@ class TodoItem:
 
 def get_subtext(current: datetime, task: Task):
     if task.due.datetime:
-        dt = datetime.fromisoformat(task.due.datetime)
+        dt = datetime.strptime(task.due.datetime, '%Y-%m-%dT%H:%M:%SZ')
         month_day = dt.strftime("%b %d %I:%M %p")
     else:
         dt = datetime.strptime(task.due.date, "%Y-%m-%d")
