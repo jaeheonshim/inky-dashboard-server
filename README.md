@@ -1,4 +1,4 @@
-This is the backend server repository for my E-paper dashboard project, [Inky Dashboard](https://github.com/jaeheonshim/inky-dashboard-server). It's a simple Flask webserver that makes various HTTP requests to the provided iCal links as well as the the Todoist API, and encodes the most recent information in the [cbor](https://cbor.io/) format to be read by the Pico W powering the Inky Frame.
+This is the backend server repository for my E-paper dashboard project, [Inky Dashboard](https://github.com/jaeheonshim/inky-dashboard). It's a simple Flask webserver that makes various HTTP requests to the provided iCal links as well as the the Todoist API, and encodes the most recent information in the [cbor](https://cbor.io/) format to be read by the Pico W powering the Inky Frame.
 
 ## How to use
 
