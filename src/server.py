@@ -56,3 +56,6 @@ def endpoint():
     }
 
     return dumps(payload)
+
+if __name__=='__main__': 
+   app.run() 
