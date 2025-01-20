@@ -15,14 +15,17 @@ def get_subtext(current: datetime, task: Task):
         return "No Due Date"
 
     if task.due.datetime:
-        dt = datetime.strptime(task.due.datetime, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
-        month_day = dt.strftime("%b %d %I:%M %p")
+        try:
+            # Attempt to parse as ISO 8601 with timezone info
+            dt = datetime.fromisoformat(task.due.datetime.replace("Z", "+00:00"))
+        except ValueError:
+            raise ValueError("Invalid datetime format")
     else:
-        dt = datetime.strptime(task.due.date, "%Y-%m-%d")
-        month_day = dt.strftime("%b %d")
+        dt = datetime.strptime(task.due.date, "%Y-%m-%d").replace(tzinfo=current.tzinfo)
 
-    dt = dt.astimezone(current.tzinfo) # Use current timezone
+    dt = dt.astimezone(current.tzinfo)
 
+    month_day = dt.strftime("%b %d %I:%M %p")
     day_of_week = dt.strftime("%A")
 
     if current > dt:
