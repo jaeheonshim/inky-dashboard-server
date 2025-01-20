@@ -11,6 +11,9 @@ class TodoItem:
         self.subtext = subtext
 
 def get_subtext(current: datetime, task: Task):
+    if task.due is None:
+        return "No Due Date"
+
     if task.due.datetime:
         dt = datetime.strptime(task.due.datetime, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
         month_day = dt.strftime("%b %d %I:%M %p")
