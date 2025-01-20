@@ -1,7 +1,7 @@
 import calendar_settings
 from todoist_api_python.api import TodoistAPI
 from todoist_api_python.models import Task
-from datetime import datetime
+from datetime import datetime, timezone
 
 api = TodoistAPI(calendar_settings.todoist_api_key)
 
@@ -12,13 +12,13 @@ class TodoItem:
 
 def get_subtext(current: datetime, task: Task):
     if task.due.datetime:
-        dt = datetime.strptime(task.due.datetime, '%Y-%m-%dT%H:%M:%SZ')
+        dt = datetime.strptime(task.due.datetime, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
         month_day = dt.strftime("%b %d %I:%M %p")
     else:
         dt = datetime.strptime(task.due.date, "%Y-%m-%d")
         month_day = dt.strftime("%b %d")
 
-    dt = dt.replace(tzinfo=current.tzinfo) # Use current timezone
+    dt = dt.astimezone(current.tzinfo) # Use current timezone
 
     day_of_week = dt.strftime("%A")
 
