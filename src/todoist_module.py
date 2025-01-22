@@ -21,9 +21,9 @@ def get_subtext(current: datetime, task: Task):
         except ValueError:
             raise ValueError("Invalid datetime format")
     else:
-        dt = datetime.strptime(task.due.date, "%Y-%m-%d").replace(tzinfo=current.tzinfo)
+        dt = datetime.strptime(task.due.date, "%Y-%m-%d").replace(tzinfo=calendar_settings.timezone)
 
-    dt = dt.astimezone(current.tzinfo)
+    dt = dt.astimezone(calendar_settings.timezone)
 
     month_day = dt.strftime("%b %d %I:%M %p")
     day_of_week = dt.strftime("%A")
