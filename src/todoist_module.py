@@ -24,6 +24,7 @@ def get_subtext(current: datetime, task: Task):
         dt = datetime.strptime(task.due.date, "%Y-%m-%d").replace(tzinfo=calendar_settings.timezone)
 
     dt = dt.astimezone(calendar_settings.timezone)
+    current = current.astimezone(calendar_settings.timezone)
 
     month_day = dt.strftime("%b %d %I:%M %p")
     day_of_week = dt.strftime("%A")
